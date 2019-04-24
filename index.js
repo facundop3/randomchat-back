@@ -25,7 +25,8 @@ io.on('connection', socket =>{
 
   socket.on('new-private-message', ({id, message})=>{
     console.log(`New socket: Id#: ${socket.id}`)
-    console.log(`Private message to ${id}: ${message}`)
+    io.to(socket.id).emit('new-private-message', {id:socket.id ,message, username:socketID_username[socket.id] })
+    delete message.isOutbound
     io.to(id).emit('new-private-message', {id:socket.id ,message, username:socketID_username[socket.id] })
   })
 
