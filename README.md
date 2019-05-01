@@ -1,7 +1,5 @@
 ## Backend (React frontend [here](https://github.com/facundop3/randomchat))
 
-## Warning ⚠️
-Actually it isn't working, but I will finish it asap (hopefully)
 
 ## How To run:
   
