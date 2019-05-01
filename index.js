@@ -5,7 +5,7 @@ const http = require('http').createServer(app),
 
 const socketID_username = {}
 
-const getOnlineUsers = id_username => Object.keys(id_username).map(id=> ({username: id_username[id], id}))
+const getOnlineUsers = id_username => Object.keys(id_username).map(id=> ({username: id_username[id], id, isOpen: false}))
 
 io.on('connection', socket =>{
   console.log(`New socket: Id#: ${socket.id}`)
@@ -24,8 +24,8 @@ io.on('connection', socket =>{
   })
 
   socket.on('new-private-message', ({id, message})=>{
-    console.log(`New socket: Id#: ${socket.id}`)
-    io.to(socket.id).emit('new-private-message', {id:socket.id ,message, username:socketID_username[socket.id] })
+    console.log(`new-private-message from : ${socketID_username[socket.id]} to : ${socketID_username[id]} content : ${message.content}`)
+    io.to(socket.id).emit('new-private-message', {id ,message, username:socketID_username[socket.id] })
     delete message.isOutbound
     io.to(id).emit('new-private-message', {id:socket.id ,message, username:socketID_username[socket.id] })
   })
