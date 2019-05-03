@@ -41,6 +41,6 @@ app.get('/', function (req, res) {
   res.send('Hello World!');
 });
 
-http.listen(PORT, () =>{
-  console.log(`Listening on port: ${PORT}`)
+http.listen(process.env.PORT || PORT, () =>{
+  console.log(`Listening on port: ${process.env.PORT || PORT}`)
 })
