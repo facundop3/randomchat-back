@@ -37,6 +37,9 @@ io.on('connection', socket =>{
 })
 
 
+app.get('/', function (req, res) {
+  res.send('Hello World!');
+});
 
 http.listen(PORT, () =>{
   console.log(`Listening on port: ${PORT}`)
